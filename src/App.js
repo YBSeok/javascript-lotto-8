@@ -11,27 +11,22 @@ class App {
   }
 
   async run() {
-    try {
-      const purchaseAmount = await InputManager.getPurchaseAmount();
-      const lottos = this.#lottoMachine.issueLottos(purchaseAmount);
-      OutputManager.printPurchasedLottos(lottos);
+    const purchaseAmount = await InputManager.getPurchaseAmount();
+    const lottos = this.#lottoMachine.issueLottos(purchaseAmount);
+    OutputManager.printPurchasedLottos(lottos);
 
-      const winningLotto = await InputManager.getWinningLotto();
-      const statistics = this.#lottoMachine.calculateStatistics(
-        lottos,
-        winningLotto
-      );
+    const winningLotto = await InputManager.getWinningLotto();
+    const statistics = this.#lottoMachine.calculateStatistics(
+      lottos,
+      winningLotto
+    );
 
-      const totalReturnRate = this.#lottoMachine.calculateTotalReturnRate(
-        purchaseAmount,
-        statistics
-      );
+    const totalReturnRate = this.#lottoMachine.calculateTotalReturnRate(
+      purchaseAmount,
+      statistics
+    );
 
-      OutputManager.printStatistics(statistics, totalReturnRate);
-    } catch (error) {
-    } finally {
-      Console.close();
-    }
+    OutputManager.printStatistics(statistics, totalReturnRate);
   }
 }
 
