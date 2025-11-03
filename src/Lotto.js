@@ -12,7 +12,13 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return this.#numbers.slice().sort((a, b) => a - b);
+  }
+
+  contains(number) {
+    return this.#numbers.includes(number);
+  }
 }
 
 export default Lotto;
